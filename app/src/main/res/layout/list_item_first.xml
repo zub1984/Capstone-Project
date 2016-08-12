@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    android:outlineProvider="bounds">
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:padding="15dp"
+        app:columnCount="2">
+
+        <TextView
+            android:id="@+id/text_update_time"
+            android:layout_width="0dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1"
+            android:textColor="@color/secondary_text"
+            tools:text="Updated: Thursday, April 03\n@ 4:00 PM" />
+
+        <TextView
+            android:id="@+id/text_full_name"
+            android:layout_width="0dp"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:singleLine="true"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1"
+            android:textColor="@color/secondary_text"
+            tools:text="GoPro, Inc." />
+
+        <TextView
+            android:id="@+id/text_symbol"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/ListItemFirstTextLarge"
+            app:layout_columnWeight="1"
+            tools:text="GPRO" />
+
+        <TextView
+            android:id="@+id/text_change_dollar"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/ListItemFirstTextLarge"
+            app:layout_columnWeight="1"
+            tools:text="$-1282.91"
+            tools:textColor="@color/stock_down_red" />
+
+        <TextView
+            android:id="@+id/text_recent_close"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/ListItemFirstTextLarge"
+            app:layout_columnWeight="1"
+            tools:text="$1220.23" />
+
+        <TextView
+            android:id="@+id/text_change_percent"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:textAppearance="@style/ListItemFirstTextLarge"
+            app:layout_columnWeight="1"
+            tools:text="-1120.23%"
+            tools:textColor="@color/stock_down_red" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1">
+
+            <TextView
+                android:id="@+id/text_streak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="33 days"
+                android:textAppearance="@style/ListItemFirstTextLarge"
+                tools:text="33 days" />
+
+            <ImageView
+                android:id="@+id/image_streak_arrow"
+                style="@style/StreakArrow"
+                android:layout_width="@dimen/stock_arrow_size_first"
+                android:layout_height="@dimen/stock_arrow_size_first"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/ic_streak_down" />
+        </LinearLayout>
+    </android.support.v7.widget.GridLayout>
+
+</FrameLayout>

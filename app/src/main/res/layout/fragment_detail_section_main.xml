@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/detail_section_horizontal_padding"
+    android:paddingStart="@dimen/detail_section_horizontal_padding"
+    android:paddingRight="@dimen/detail_section_horizontal_padding"
+    android:paddingEnd="@dimen/detail_section_horizontal_padding"
+    android:paddingTop="@dimen/detail_section_vertical_padding"
+    android:paddingBottom="@dimen/detail_section_vertical_padding">
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/detail_main_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        app:columnCount="2">
+
+        <TextView
+            android:id="@+id/text_update_time"
+            android:layout_width="0dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:textColor="@color/secondary_text"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1"
+            tools:text="@string/update_time_format" />
+
+        <TextView android:id="@+id/text_full_name"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/secondary_text"
+            android:singleLine="true"
+            android:ellipsize="end"
+
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1"
+            tools:text="GoPro, Inc."/>
+
+        <TextView android:id="@+id/text_symbol"
+            android:layout_width="0dp"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/detail_symbol_text_size"
+            android:textColor="@android:color/black"
+            app:layout_columnSpan="2"
+            app:layout_columnWeight="1"
+            tools:text="GPRO"/>
+
+        <TextView
+            style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
+            android:layout_width="0dp"
+            android:text="@string/recent_close"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            style="@style/DetailColumnsCommon.TextSize.DetailRight"
+            android:id="@+id/text_recent_close"
+            android:layout_width="0dp"
+            android:textColor="@color/black"
+            app:layout_gravity="fill_vertical"
+            android:gravity="bottom"
+            app:layout_columnWeight="1"
+            tools:text="$333.33"/>
+
+        <TextView
+            style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
+            android:layout_width="0dp"
+            android:text="@string/dollar_change"
+            app:layout_columnWeight="1" />
+
+        <TextView
+            style="@style/DetailColumnsCommon.TextSize.DetailRight"
+            android:id="@+id/text_change_dollar"
+            android:layout_width="0dp"
+            app:layout_columnWeight="1"
+            tools:textColor="@color/stock_down_red"
+            tools:text="$-333.33"/>
+
+        <TextView
+            style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
+            android:layout_width="0dp"
+            android:text="@string/percent_change"
+            app:layout_columnWeight="1" />
+
+        <LinearLayout
+            style="@style/DetailColumnsCommon.DetailLinearLayoutRight"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            app:layout_columnWeight="1">
+
+            <TextView
+                android:id="@+id/text_change_percent_neg_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/detail_column_item_text_size"
+                android:textColor="@color/black"
+                android:text="@string/offset_negative_sign"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/text_change_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/detail_column_item_text_size"
+                android:textColor="@android:color/black"
+                tools:textColor="@color/stock_down_red"
+                tools:text="333.33%" />
+            </LinearLayout>
+
+
+        <TextView
+            style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
+            android:layout_width="0dp"
+            android:text="@string/streak"
+            app:layout_columnWeight="1" />
+
+        <LinearLayout
+            style="@style/DetailColumnsCommon.DetailLinearLayoutRight"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            app:layout_columnWeight="1">
+
+            <TextView
+                android:id="@+id/text_streak_neg_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/detail_column_item_text_size"
+                android:textColor="@color/black"
+                android:text="@string/offset_negative_sign"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/text_streak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/detail_column_item_text_size"
+                android:textColor="@color/black"
+                tools:text="1 day"/>
+
+            <ImageView
+                style="@style/StreakArrow"
+                android:id="@+id/image_streak_arrow"
+                android:layout_width="@dimen/stock_arrow_size_normal"
+                android:layout_height="@dimen/stock_arrow_size_normal"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/ic_streak_down"/>
+        </LinearLayout>
+
+    </android.support.v7.widget.GridLayout>
+</RelativeLayout>

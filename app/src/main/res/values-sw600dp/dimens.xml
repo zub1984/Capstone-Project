@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 7 inch tablet and above-->
+    <!-- detail fragment-->
+    <dimen name="detail_column_item_text_size">18sp</dimen>
+
+    <!-- Values for the cardView detail view in tablets-->
+    <dimen name="details_app_bar_overlap">24dp</dimen>
+    <dimen name="detail_card_elevation">6dp</dimen>
+    <dimen name="card_view_horizontal_margin">0dp</dimen>
+    <dimen name="card_view_height">330dp</dimen>
+
+    <!--list_item-->
+    <dimen name="list_item_vertical_padding">15dp</dimen>
+    <dimen name="list_item_horizontal_padding">88dp</dimen>
+    <!-- For the load items we want them to be the same size as a regular item, but since a regular
+    item is wrap_content we are just going by eye-->
+    <dimen name="list_item_estimated_height">70dp</dimen>
+
+    <!-- widget -->
+    <dimen name="widget_min_width">320dp</dimen>
+</resources>

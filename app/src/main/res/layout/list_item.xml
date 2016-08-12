@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.GridLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:paddingBottom="@dimen/list_item_vertical_padding"
+        android:paddingLeft="@dimen/list_item_horizontal_padding"
+        android:paddingRight="@dimen/list_item_horizontal_padding"
+        android:paddingTop="@dimen/list_item_vertical_padding"
+        app:columnCount="4">
+
+        <TextView
+            android:id="@+id/text_symbol"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/ListItemBlackText"
+            app:layout_columnWeight="@dimen/list_item_symbol_column_weight"
+            tools:text="GPRO" />
+
+        <TextView
+            android:id="@+id/text_recent_close"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/ListItemBlackText"
+            app:layout_columnWeight="1"
+            tools:text="$6333.26" />
+
+        <TextView
+            android:id="@+id/text_streak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/ListItemBlackText"
+            tools:text="-33d" />
+
+        <ImageView
+            android:id="@+id/image_streak_arrow"
+            style="@style/StreakArrow"
+            android:layout_width="@dimen/stock_arrow_size_normal"
+            android:layout_height="@dimen/stock_arrow_size_normal"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_streak_down" />
+
+        <TextView
+            android:id="@+id/text_full_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:paddingEnd="@dimen/text_view_full_name_padding_end"
+            android:paddingLeft="0dp"
+            android:paddingRight="@dimen/text_view_full_name_padding_end"
+            android:paddingStart="0dp"
+            android:singleLine="true"
+            android:textColor="@color/secondary_text"
+            app:layout_columnWeight="@dimen/list_item_symbol_column_weight"
+            tools:text="GoPro, Inc." />
+
+        <TextView
+            android:id="@+id/text_change_amt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_columnSpan="3"
+            app:layout_columnWeight="@dimen/list_item_change_amt_column_weight"
+            tools:text="$-2222.00 (-2223.44%)"
+            tools:textColor="@color/stock_down_red" />
+
+    </android.support.v7.widget.GridLayout>
+</FrameLayout>

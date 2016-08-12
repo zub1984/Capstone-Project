@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--list_item_first-->
+    <dimen name="list_item_first_main_info_spacing">25dp</dimen>
+
+    <!--list_item-->
+    <dimen name="list_item_horizontal_padding">40dp</dimen>
+    <item name="list_item_change_amt_column_weight" type="dimen" format="integer">4</item>
+</resources>

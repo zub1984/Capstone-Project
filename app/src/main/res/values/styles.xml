@@ -1,0 +1,124 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/list_item_bg_color</item>
+    </style>
+
+    <style name="AppTheme.Detail">
+        <item name="android:windowEnterTransition">@transition/detail_enter_transition</item>
+    </style>
+
+    <style name="StockChangeTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_activity</item>
+    </style>
+
+    <!-- Overflow menu item -->
+    <style name="OverflowPopUpMenuItem">
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/selector_menu_overflow_item</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Sort dialog radio button-->
+    <style name="SortDialogRadioButton">
+        <item name="android:minHeight">@dimen/md_list_item_height</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <!-- list_item_first.xml TextView style -->
+    <style name="ListItemFirstTextLarge">
+        <item name="android:textSize">@dimen/list_item_first_main_info_text_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- list_item.xml TextView style for the first row-->
+    <style name="ListItemBlackText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- streak arrows -->
+    <style name="StreakArrow">
+        <item name="android:layout_marginLeft">@dimen/stock_arrow_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/stock_arrow_margin_left</item>
+        <item name="android:contentDescription">@string/content_description_stock_arrow</item>
+        <item name="android:baselineAlignBottom">true</item>
+    </style>
+
+    <!-- Custom Action Bar styles -->
+
+    <style name="BarChartButton">
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:padding">@dimen/action_bar_button_padding</item>
+        <item name="android:src">@drawable/ic_bar_chart</item>
+        <item name="android:background">@drawable/selector_button_transparent</item>
+        <item name="android:focusable">true</item>
+        <item name="android:contentDescription">@string/content_description_button_bar_chart</item>
+    </style>
+
+    <!-- =============================Detail Fragment styles=====================================-->
+
+    <!--Main Section left column-->
+    <style name="DetailExtrasDaysTextView">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/detail_column_item_text_size</item>
+    </style>
+
+    <!--Main Section left column-->
+    <style name="DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!--Extras Section left column-->
+    <style name="DetailColumnsCommon.TextSize.LeftCommon.DetailExtrasLeft">
+        <item name="android:textColor">@color/detail_extras_label</item>
+    </style>
+
+    <!--Common between left columns-->
+    <style name="DetailColumnsCommon.TextSize.LeftCommon">
+        <item name="android:gravity">end</item>
+        <item name="android:paddingLeft">@dimen/detail_common_column_outer_padding</item>
+        <item name="android:paddingStart">@dimen/detail_common_column_outer_padding</item>
+        <item name="android:paddingRight">@dimen/detail_left_column_inner_padding</item>
+        <item name="android:paddingEnd">@dimen/detail_left_column_inner_padding</item>
+    </style>
+
+    <!-- Main and Extra Section right columns-->
+    <style name="DetailColumnsCommon.TextSize.DetailRight">
+        <item name="android:paddingLeft">@dimen/detail_right_column_inner_padding</item>
+        <item name="android:paddingStart">@dimen/detail_right_column_inner_padding</item>
+        <item name="android:paddingRight">@dimen/detail_common_column_outer_padding</item>
+        <item name="android:paddingEnd">@dimen/detail_common_column_outer_padding</item>
+    </style>
+
+    <!-- Main and Extra Section right columns that are linear layouts-->
+    <style name="DetailColumnsCommon.DetailLinearLayoutRight">
+        <item name="android:gravity">bottom</item>
+        <item name="android:paddingLeft">@dimen/detail_right_column_inner_padding</item>
+        <item name="android:paddingStart">@dimen/detail_right_column_inner_padding</item>
+        <item name="android:paddingRight">@dimen/detail_common_column_outer_padding</item>
+        <item name="android:paddingEnd">@dimen/detail_common_column_outer_padding</item>
+    </style>
+
+    <!--Common between both left and right columns item that aren't linear layouts-->
+    <style name="DetailColumnsCommon.TextSize">
+        <item name="android:textSize">@dimen/detail_column_item_text_size</item>
+    </style>
+
+    <!--Common between both left and right columns item -->
+    <style name="DetailColumnsCommon">
+        <item name="android:layout_marginTop">@dimen/detail_column_item_vertical_margin</item>
+        <item name="android:layout_marginBottom">@dimen/detail_column_item_vertical_margin</item>
+    </style>
+    <!-- ==========================End of Detail Fragment styles=================================-->
+</resources>

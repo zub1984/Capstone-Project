@@ -1,0 +1,77 @@
+<!-- default values to fall back on if not defined in other dimen files-->
+<!--I think default dimens is sw320dp. I don't think there are any devices smaller than that -->
+<resources>
+    <!-- Logo -->
+    <dimen name="logo_font_size">36dp</dimen>
+    <dimen name="widget_logo_font_size">26dp</dimen>
+    <dimen name="app_bar_height">68dp</dimen>
+
+    <!--Appbar for phones-->
+    <dimen name="appbar_elevation">4dp</dimen>
+
+    <!-- StockChange arrow size-->
+    <dimen name="stock_arrow_size_normal">12dp</dimen>
+    <dimen name="stock_arrow_size_first">16dp</dimen>
+    <dimen name="stock_arrow_margin_left">2dp</dimen>
+
+    <!--ActionBar / Overflow Menu -->
+    <dimen name="toolbar_size">68dp</dimen> <!-- Need toolbar this size to encompass entire ripple-->
+
+    <dimen name="action_bar_button_size">48dp</dimen>
+    <dimen name="action_bar_button_padding">12dp</dimen> <!-- dl icons w/ 15% padding icons 8-->
+
+    <dimen name="overflow_menu_width">180dp</dimen>
+    <dimen name="overflow_menu_elevation">8dp</dimen>
+    <dimen name="overflow_menu_compat_padding">8dp</dimen>
+
+    <!--Detail fragment-->
+    <dimen name="detail_symbol_text_size">24sp</dimen>
+
+    <dimen name="detail_column_item_text_size">18sp</dimen>
+    <dimen name="detail_column_item_vertical_margin">5dp</dimen>
+
+    <dimen name="detail_right_column_inner_padding">27dp</dimen>
+    <dimen name="detail_left_column_inner_padding">3dp</dimen>
+    <dimen name="detail_common_column_outer_padding">0dp</dimen>
+
+        <!-- On devices < sw360dp scrollview generates this whitespace on bottom of screen for
+        some reason and we need to fill it out vertically-->
+    <dimen name="detail_section_vertical_padding">24dp</dimen>
+    <dimen name="detail_section_horizontal_padding">20dp</dimen>
+    <!--End Detail fragment-->
+
+    <!-- Bar chart-->
+    <dimen name="bar_chart_description_vertical_margin">8dp</dimen>
+    <dimen name="bar_chart_description_horizontal_margin">5dp</dimen>
+
+    <!--list_item_first-->
+    <dimen name="list_item_first_padding">15dp</dimen>
+    <dimen name="list_item_first_main_info_text_size">24sp</dimen>
+
+    <!--list_item-->
+    <dimen name="list_item_vertical_padding">10dp</dimen>
+    <dimen name="list_item_horizontal_padding">10dp</dimen>
+    <dimen name="text_view_full_name_padding_end">10dp</dimen>
+    <dimen name="progress_wheel_size">40dp</dimen>
+    <item name="list_item_change_amt_column_weight" type="dimen" format="integer">5</item>
+    <item name="list_item_symbol_column_weight" type="dimen" format="float">4.75</item>
+    <!-- For the load items (list_item_loading & widgetList_item_load_more) we want them to be the
+    same size as a regular item, but since a regular item is wrap_content we are just going by eye-->
+    <dimen name="list_item_estimated_height">60dp</dimen>
+
+    <!-- widget (formula 70dp x n - 30 dp) This formula is not accurate for tablets. For tablets
+    I had to allocate an extra column (70dp) to reach my desired 4 columns. This is because
+    tablets are too big and interprets 250dp as 3 columns-->
+    <dimen name="widget_min_width">300dp</dimen>
+    <dimen name="widget_min_height">110dp</dimen>
+    <dimen name="widget_min_resize_width">@dimen/widget_min_width</dimen>
+    <dimen name="widget_min_resize_height">@dimen/widget_min_height</dimen>
+    <dimen name="widget_list_item_padding">10dp</dimen>
+    <dimen name="widget_list_item_estimated_height">60dp</dimen>
+    <item name="widget_list_item_change_amt_column_weight" type="dimen" format="integer">5</item>
+
+    <!-- material design dialog specs-->
+    <dimen name="md_dialog_frame_margin">24dp</dimen>
+    <dimen name="md_list_item_height">48dp</dimen>
+    <dimen name="md_listitem_textsize">16sp</dimen>
+</resources>

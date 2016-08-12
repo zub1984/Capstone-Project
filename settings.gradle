@@ -1,0 +1,2 @@
+include ':app', ':custom-search'
+project(':custom-search').projectDir = new File('app/libs/custom-search')

@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    defaultConfig {
+        applicationId "com.stock.change"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    // Configure variables in the gradle.properties (project level)
+    signingConfigs {
+        release {
+            keyAlias ORG_GRADLE_PROJECT_KEY_ALIAS
+            keyPassword ORG_GRADLE_PROJECT_KEY_PASSWORD
+            storeFile file(ORG_GRADLE_PROJECT_STORE_FILE)
+            storePassword ORG_GRADLE_PROJECT_STORE_PASSWORD
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            debuggable true
+            jniDebuggable false
+            renderscriptDebuggable false
+            zipAlignEnabled true
+        }
+    }
+
+    productFlavors {
+        prod {
+            applicationId = 'com.stock.change'
+            versionCode getReleaseVersionCode()
+            versionName getLastVersionName(project.releaseVersionCode)
+            signingConfig signingConfigs.release
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+        }
+    }
+    dexOptions {
+        incremental true
+    }
+
+
+    lintOptions{
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile deps.appcompatv7
+    compile deps.design
+    compile deps.gridlayout
+    compile deps.cardview
+    compile deps.play_services_ads
+    compile deps.play_services_analytics
+    compile deps.YahooFinanceAPI
+    compile deps.MPAndroidChart
+    compile deps.eventbus
+    apt deps.eventbus_annotation_processor
+
+    compile('com.h6ah4i.android.widget.advrecyclerview:advrecyclerview:0.8.6@aar') {
+        transitive = true
+    }
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.3@aar') {
+        transitive = true
+    }
+
+    compile deps.butterknife
+    apt deps.butterknife_compiler
+
+    compile project(':custom-search')
+
+    testCompile deps.junit
+}
+
+apt {
+    arguments {
+        eventBusIndex "com.stock.change.custom.MyEventBusIndex"
+    }
+}

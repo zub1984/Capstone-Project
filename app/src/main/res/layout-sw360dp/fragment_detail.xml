@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="@dimen/toolbar_size"
+        android:layout_height="@dimen/toolbar_size"
+        android:background="@android:color/transparent"/>
+
+    <!-- button_bar_chart_ref will be @null for tablets-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/button_bar_chart"
+        android:orientation="vertical">
+        <include layout="@layout/fragment_detail_section_main"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <include layout="@layout/fragment_detail_section_extras"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <ImageView
+        style="@style/BarChartButton"
+        android:id="@+id/button_bar_chart"
+        android:layout_width="@dimen/action_bar_button_size"
+        android:layout_height="@dimen/action_bar_button_size"
+        android:tint="@color/search_box_grey"
+        tools:ignore="ContentDescription"/>
+
+</RelativeLayout>

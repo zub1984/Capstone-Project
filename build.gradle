@@ -1,0 +1,133 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        //http://greenrobot.org/eventbus/documentation/subscriber-index/
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+ext {
+    minSdkVersion = 16
+    targetSdkVersion = 23
+    compileSdkVersion = 23
+    buildToolsVersion = '23.0.2'
+    sourceCompatibilityVersion = JavaVersion.VERSION_1_7
+    targetCompatibilityVersion = JavaVersion.VERSION_1_7
+
+    // define dev and release version
+    devVersionCode = 4
+    releaseVersionCode = 1
+}
+
+def androidToolsVersion = '23.0.2'
+
+ext.deps = [
+        // Android
+        android: 'com.google.android:android:2.1.2',
+        androidGradle: 'com.android.tools.build:gradle:2.1.2',
+
+        appcompatv7: 'com.android.support:appcompat-v7:23.1.1',
+        design:'com.android.support:design:23.1.1',
+        gridlayout:'com.android.support:gridlayout-v7:23.1.1',
+        cardview: 'com.android.support:cardview-v7:23.1.1',
+        //supportAnnotations: 'com.android.support:support-annotations:24.1.0',
+
+        // nineoldandroids
+        nineoldandroids : 'com.nineoldandroids:library:2.4.0',
+
+        // butterknife
+        butterknife: 'com.jakewharton:butterknife:8.2.1',
+        butterknife_compiler : 'com.jakewharton:butterknife-compiler:8.2.1',
+
+        // Third Party
+        YahooFinanceAPI: 'com.yahoofinance-api:YahooFinanceAPI:2.0.0',
+        MPAndroidChart: 'com.github.PhilJay:MPAndroidChart:v2.2.0',
+
+        //event bus
+        // Optimization to speed up event bus
+        // http://greenrobot.org/eventbus/documentation/subscriber-index/
+        eventbus: 'org.greenrobot:eventbus:3.0.0',
+        eventbus_annotation_processor: 'org.greenrobot:eventbus-annotation-processor:3.0.1',
+
+        // Google play services
+        play_services_ads: 'com.google.android.gms:play-services-ads:8.4.0',
+        play_services_analytics : 'com.google.android.gms:play-services-analytics:8.4.0',
+
+        // Test dependencies
+        junit: 'junit:junit:4.12',
+]
+
+
+def getReleaseVersionCode() {
+    def version = project.releaseVersionCode + 1
+    project.releaseVersionCode = version
+    println sprintf("Returning version %d", version)
+    return version
+}
+
+def getDevVersionCode() {
+    def version = project.devVersionCode + 1
+    project.devVersionCode = version
+    println sprintf("Returning version %d", version)
+    return version
+}
+
+
+def getLastVersionName(versionCode) {
+    return "0.0." + versionCode
+}
+
+task printProps << {
+    println ORG_GRADLE_PROJECT_KEY_ALIAS
+    println ORG_GRADLE_PROJECT_KEY_PASSWORD
+    println ORG_GRADLE_PROJECT_STORE_FILE
+    println ORG_GRADLE_PROJECT_STORE_PASSWORD
+    println getDevVersionCode()
+    println getReleaseVersionCode()
+}
+
+/*
+Configure Test Task
+To tie it all together, create a Gradle task that:
+1.	print properties variables
+2.	Runs all tests
+3.	prints test end message
+*/
+
+/*
+task startService {
+    dependsOn printProps
+}
+
+task runStockTest {
+    dependsOn ":app:connectedAndroidTest"
+}
+
+task stopService {
+    println "Test Finished."
+}
+
+runStockTest.mustRunAfter startService
+stopService.mustRunAfter runStockTest
+
+task runTests {
+    dependsOn = ["startService", "runStockTest", "stopService"]
+}
+*/

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/md_dialog_frame_margin"
+    android:paddingLeft="@dimen/md_dialog_frame_margin"
+    android:paddingRight="@dimen/md_dialog_frame_margin"
+    android:paddingStart="@dimen/md_dialog_frame_margin">
+
+    <RadioGroup
+        android:id="@+id/radio_group_sort_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/sort_alphabetical"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/sort_alphabetical" />
+
+        <RadioButton
+            android:id="@+id/sort_streak"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_streak" />
+
+        <RadioButton
+            android:id="@+id/sort_dollar_change"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_change_dollar" />
+
+        <RadioButton
+            android:id="@+id/sort_percent_change"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_change_percent" />
+
+        <RadioButton
+            android:id="@+id/sort_recent_close"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_recent_close" />
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/secondary_text" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_sort_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/sort_ascending"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/sort_ascending" />
+
+        <RadioButton
+            android:id="@+id/sort_descending"
+            style="@style/SortDialogRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sort_descending" />
+
+    </RadioGroup>
+</LinearLayout>
