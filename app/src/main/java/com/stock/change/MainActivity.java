@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
         MainAdapter.EventListener, SwipeRefreshLayout.OnRefreshListener,
         ListManagerFragment.EventListener {
 
-    //private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @BindView(R.id.text_empty_list) TextView mEmptyMsg;
     @BindView(R.id.coordinator_layout) CoordinatorLayout mCoordinatorLayout;
@@ -132,12 +132,11 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
 
         // Init savedInstanceState first as many components rely on it
         initSavedInstanceState(savedInstanceState);
-        initNavigationMenu();
+        setupDrawerMenuContent();
         initOverflowMenu();
         initRecyclerView();
         initInterstitialAd();
@@ -573,12 +572,12 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
         }
     }
 
-    /**
-     * Initializes the navigation menu.
-     */
-    private void initNavigationMenu() {
-        final NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
 
+    /**
+     * setup the navigation drawer menu.
+     */
+    private void setupDrawerMenuContent() {
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         mToolbar.setMenuListener(new SearchBox.MenuListener() {
             @Override
             public void onMenuClick() {
@@ -586,49 +585,58 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
             }
         });
 
-        // Setup navigation menu clicks here
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                int itemId = item.getItemId();
-                switch (itemId) {
-                    case R.id.navigation_msg_of_the_day:
-                        new MessageOfDayFragment().show(getSupportFragmentManager(), MessageOfDayFragment.TAG);
-                        break;
-
-                    case R.id.navigation_faq:
-                        new FaqDialog().show(getSupportFragmentManager(), FaqDialog.TAG);
-                        break;
-
-                    case R.id.navigation_about:
-                        new AboutDialog().show(getSupportFragmentManager(), AboutDialog.TAG);
-                        break;
-
-                    case R.id.navigation_google_play:
-                        // Link to the app in the play store
-                        final String appPackageName = getPackageName();
-                        try {
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse("market://details?id=" + appPackageName)));
-                        } catch (ActivityNotFoundException e) {
-                            startActivity(new Intent(Intent.ACTION_VIEW,
-                                    Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                        }
-                        break;
-                }
-
-                // Delay
-                new Handler().postDelayed(new Runnable() {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
-                    public void run() {
-                        mDrawerLayout.closeDrawer(GravityCompat.START);
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        selectDrawerItem(menuItem);
+                        return true;
                     }
-                }, Constants.NAV_DRAWER_CLOSE_DELAY);
-
-                return true;
-            }
-        });
+                });
     }
+
+    /**
+     * Display the dialog message on menu item selection.
+     *
+     * @param menuItem selected menu item
+     */
+    public void selectDrawerItem(MenuItem menuItem) {
+        int itemId = menuItem.getItemId();
+        switch (itemId) {
+            case R.id.navigation_msg_of_the_day:
+                new MessageOfDayFragment().show(getSupportFragmentManager(), MessageOfDayFragment.TAG);
+                break;
+
+            case R.id.navigation_faq:
+                new FaqDialog().show(getSupportFragmentManager(), FaqDialog.TAG);
+                break;
+
+            case R.id.navigation_about:
+                new AboutDialog().show(getSupportFragmentManager(), AboutDialog.TAG);
+                break;
+
+            case R.id.navigation_google_play:
+                // Link to the app in the play store
+                final String appPackageName = getPackageName();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=" + appPackageName)));
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+                break;
+        }
+
+        // Delay
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+            }
+        }, Constants.NAV_DRAWER_CLOSE_DELAY);
+    }
+
 
     /**
      * Initializes the overflow menu.

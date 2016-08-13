@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Stock Change</string>
-    <string name="app_name_initials" translatable="false">&#160;SC&#160;</string>
+    <!--<string name="app_name_initials" translatable="false">&#160;SC&#160;</string>-->
+    <string name="app_name_initials" translatable="false">Stock Change</string>
 
     <!-- Admob -->
     <!-- Test Interstitial ID ca-app-pub-3940256099942544/1033173712-->
@@ -16,9 +17,10 @@
     <string name="tag_manager_motd_key" translatable="false">msg_of_the_day</string>
 
     <!-- Navigation menu -->
+    <string name="navigation_home">Home</string>
+    <string name="navigation_about">About Us</string>
     <string name="navigation_motd">Message of the Day</string>
     <string name="navigation_faq">FAQ</string>
-    <string name="navigation_about">About</string>
     <string name="navigation_google_play">Google Play</string>
 
     <!-- Overflow menu -->

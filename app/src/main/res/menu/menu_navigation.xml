@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/navigation_msg_of_the_day"
-        android:title="@string/navigation_motd"/>
+    <group android:checkableBehavior="single">
 
-    <item android:id="@+id/navigation_faq"
-        android:title="@string/navigation_faq"/>
+        <item
+            android:id="@+id/navigation_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/navigation_home" />
 
-    <item android:id="@+id/navigation_about"
-        android:title="@string/navigation_about"/>
+        <item
+            android:id="@+id/navigation_about"
+            android:icon="@drawable/ic_info"
+            android:title="@string/navigation_about" />
 
-    <item android:id="@+id/navigation_google_play"
-        android:title="@string/navigation_google_play"/>
+        <item
+            android:id="@+id/navigation_msg_of_the_day"
+            android:icon="@drawable/ic_message"
+            android:title="@string/navigation_motd" />
+
+        <item
+            android:id="@+id/navigation_faq"
+            android:icon="@drawable/ic_faq"
+            android:title="@string/navigation_faq" />
+
+        <item
+            android:id="@+id/navigation_google_play"
+            android:icon="@drawable/ic_play_arrow"
+            android:title="@string/navigation_google_play" />
+
+       <!-- <item
+            android:id="@+id/navigation_subHeader"
+            android:title="Help Information">
+            <menu>
+                <item
+                    android:id="@+id/navigation_msg_of_the_day"
+                    android:icon="@drawable/ic_message"
+                    android:title="@string/navigation_motd" />
+
+                <item
+                    android:id="@+id/navigation_faq"
+                    android:icon="@drawable/ic_faq"
+                    android:title="@string/navigation_faq" />
+
+                <item
+                    android:id="@+id/navigation_google_play"
+                    android:icon="@drawable/ic_play_arrow"
+                    android:title="@string/navigation_google_play" />
+            </menu>
+        </item>-->
+    </group>
 </menu>
