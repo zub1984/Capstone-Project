@@ -107,5 +107,9 @@ public class Constants {
     //details service
     public static final String KEY_DETAIL_SYMBOL = "detailSymbol";
 
+    // navigation drawer item selected
+    public static final String KEY_DRAWER_ITEM_ID = "SELECTED_ID";
+
+
 
 }

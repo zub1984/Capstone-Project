@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
     private boolean mDynamicScrollLoadEnabled;
     private boolean mDynamicScrollLoadAnother;
     private int mNumberOfLaunchItems;
+    private int mSelectedDrawerMenuId;
 
     private InterstitialAd mInterstitialAd;
     private int mItemClicksForInterstitial;
@@ -137,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
         // Init savedInstanceState first as many components rely on it
         initSavedInstanceState(savedInstanceState);
         setupDrawerMenuContent();
+        //default it set first item as selected
+        mSelectedDrawerMenuId=savedInstanceState ==null ? R.id.navigation_home: savedInstanceState.getInt("SELECTED_ID");
+
         initOverflowMenu();
         initRecyclerView();
         initInterstitialAd();
@@ -601,8 +605,9 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
      * @param menuItem selected menu item
      */
     public void selectDrawerItem(MenuItem menuItem) {
-        int itemId = menuItem.getItemId();
-        switch (itemId) {
+        menuItem.setChecked(true);
+        mSelectedDrawerMenuId=menuItem.getItemId();
+        switch (mSelectedDrawerMenuId) {
             case R.id.navigation_msg_of_the_day:
                 new MessageOfDayFragment().show(getSupportFragmentManager(), MessageOfDayFragment.TAG);
                 break;
@@ -949,6 +954,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
         outState.putBoolean(Constants.KEY_DYNAMIC_SCROLL_ENABLED, mDynamicScrollLoadEnabled);
         outState.putBoolean(Constants.KEY_DYNAMIC_LOAD_ANOTHER, mDynamicScrollLoadAnother);
         outState.putInt(Constants.KEY_ITEM_CLICKS_FOR_INTERSTITIAL, mItemClicksForInterstitial);
+        outState.putInt(Constants.KEY_DRAWER_ITEM_ID, mSelectedDrawerMenuId);
         super.onSaveInstanceState(outState);
     }
 
