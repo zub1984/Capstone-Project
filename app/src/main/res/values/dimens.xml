@@ -69,6 +69,10 @@
     <dimen name="widget_list_item_padding">10dp</dimen>
     <dimen name="widget_list_item_estimated_height">60dp</dimen>
     <item name="widget_list_item_change_amt_column_weight" type="dimen" format="integer">5</item>
+    <dimen name="widget_padding_4dp">4dp</dimen>
+    <dimen name="widget_padding_8dp">8dp</dimen>
+    <dimen name="widget_header_45dp">45dp</dimen>
+
 
     <!-- material design dialog specs-->
     <dimen name="md_dialog_frame_margin">24dp</dimen>

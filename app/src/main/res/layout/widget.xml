@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,41 +7,32 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="@dimen/widget_header_45dp"
         android:background="@color/colorPrimary">
 
-        <!-- <ImageView
-             android:id="@+id/logo"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:background="@drawable/selector_button_transparent"
-             android:contentDescription="@string/app_name"
-             android:src="@drawable/logo"
-             android:paddingBottom="8dp"
-             android:paddingTop="8dp" />-->
+        <!-- widget Title -->
 
         <TextView
-            android:id="@+id/logo"
+            android:id="@+id/widget_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/selector_button_transparent"
             android:gravity="center_horizontal"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/widget_padding_8dp"
+            android:paddingTop="@dimen/widget_padding_8dp"
             android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            tools:text="@string/app_name" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:textColor="@android:color/white"
+            android:text="@string/app_name" />
+
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_toEndOf="@+id/logo"
-            android:layout_toRightOf="@+id/logo">
+            android:layout_toEndOf="@+id/widget_title"
+            android:layout_toRightOf="@+id/widget_title">
 
             <ImageView
                 android:id="@+id/button_refresh"
@@ -51,11 +41,12 @@
                 android:layout_gravity="end"
                 android:background="@drawable/selector_button_transparent"
                 android:contentDescription="@string/content_description_button_refresh"
-                android:paddingBottom="4dp"
-                android:paddingTop="4dp"
+                android:paddingBottom="@dimen/widget_padding_4dp"
+                android:paddingTop="@dimen/widget_padding_4dp"
                 android:src="@drawable/ic_refresh" />
         </FrameLayout>
     </RelativeLayout>
+
 
     <FrameLayout
         android:layout_width="match_parent"

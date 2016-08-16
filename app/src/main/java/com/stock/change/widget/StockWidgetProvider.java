@@ -47,16 +47,25 @@ public class StockWidgetProvider extends AppWidgetProvider {
                 getRefreshPendingIntent(context));
     }
 
+    /**
+     * Set the layout and attach onclick handlers to launch the main activity
+     * @param context Context
+     * @param appWidgetManager AppWidgetManager
+     * @param appWidgetIds int[]
+     */
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // Perform this loop procedure for each App Widget that belongs to this provider
         for (int appWidgetId : appWidgetIds) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
 
+            views.setTextViewText(R.id.widget_title, context.getString(R.string.app_name));
+
+
             // Create an Intent to launch MainActivity from Logo
             Intent intent = new Intent(context, MainActivity.class);
             PendingIntent pendingLogoIntent = PendingIntent.getActivity(context, 0, intent, 0);
-            views.setOnClickPendingIntent(R.id.logo, pendingLogoIntent);
+            views.setOnClickPendingIntent(R.id.widget_title, pendingLogoIntent);
 
             // Create an Intent to refresh list
             PendingIntent pendingRefreshIntent = getRefreshPendingIntent(context);
@@ -87,6 +96,12 @@ public class StockWidgetProvider extends AppWidgetProvider {
         onReceive(context, new Intent(Constants.ACTION_DATA_REFRESH));
     }
 
+
+    /**
+     * When we receive an update from the cursor provider we need to inform the widget
+     * @param context Context
+     * @param intent Intent
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
