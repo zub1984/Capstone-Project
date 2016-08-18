@@ -21,8 +21,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.stock.change.custom.MyApplication;
 import com.stock.change.data.StockContract;
 import com.stock.change.data.StockContract.StockEntry;
@@ -31,7 +29,7 @@ import java.util.ArrayList;
 
 
 public class BarChartActivity extends AppCompatActivity{
-    private final String TAG = BarChartActivity.class.getSimpleName();
+    /*private final String TAG = BarChartActivity.class.getSimpleName();*/
 
     public static final String CHART_MAP_DELIMITER = ",";
     private static final int BAR_CHART_ANIMATION_DURATION = 2000;
@@ -53,7 +51,7 @@ public class BarChartActivity extends AppCompatActivity{
         initBarChart();
 
         if(savedInstanceState == null){
-            sendScreenViewHit();
+            sendBarChartHit();
         }
     }
 
@@ -118,8 +116,8 @@ public class BarChartActivity extends AppCompatActivity{
 
     /**
      * Draws the chart using the specified xData and yData.
-     * @param xData
-     * @param yData
+     * @param xData co-ordinate
+     * @param yData co-ordinate
      */
     private void drawChart(String[] xData, int[] yData) {
         int[] barColors = new int[xData.length];
@@ -196,11 +194,12 @@ public class BarChartActivity extends AppCompatActivity{
     /**
      * Send a hit to Analytics to track data of a Screen View Hit.
      */
-    private void sendScreenViewHit(){
-        Tracker tracker = MyApplication.getInstance().getAnalyticsTracker();
-
+    private void sendBarChartHit(){
         String symbol = StockContract.getSymbolFromUri(mDetailUri);
-        tracker.setScreenName(BarChartActivity.class.getSimpleName() + " " + symbol);
-        tracker.send(new HitBuilders.ScreenViewBuilder().build());
+        MyApplication.getInstance().trackEvent(
+                getString(R.string.analytics_bar_category),
+                getString(R.string.analytics_action_barChart_view),
+                getString(R.string.analytics_label_barChart_placeholder, symbol)
+        );
     }
 }

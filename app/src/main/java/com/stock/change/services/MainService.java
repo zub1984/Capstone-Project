@@ -152,8 +152,8 @@ public class MainService extends IntentService {
     private void performActionLoadSymbol(String symbol) throws IOException {
         // Check if symbol already exists in database
         if (isEntryExist(symbol)) {
-            Utility.showToast(this, getString(R.string.toast_placeholder_symbol_exists, symbol));
-            //throw new IllegalArgumentException(getString(R.string.toast_placeholder_symbol_exists, symbol));
+            MyApplication.getInstance().trackException(new IllegalArgumentException(getString(R.string.toast_placeholder_symbol_exists, symbol)));
+            throw new IllegalArgumentException(getString(R.string.toast_placeholder_symbol_exists, symbol));
         }
         ArrayList<ContentProviderOperation> ops = new ArrayList<>();
         // Add update time operation to list
@@ -262,12 +262,12 @@ public class MainService extends IntentService {
             throw new IllegalStateException();
         }
         if (stock == null) {
+            MyApplication.getInstance().trackException(new IllegalArgumentException(getString(R.string.toast_error_retrieving_data)));
             throw new IllegalArgumentException(getString(R.string.toast_error_retrieving_data));
-        }
-        else if (stock.getName().equals(NOT_AVAILABLE) || (!stock.getCurrency().equals(USD))) {
+        } else if (stock.getName().equals(NOT_AVAILABLE) || (!stock.getCurrency().equals(USD))) {
+            MyApplication.getInstance().trackException(new IllegalArgumentException(getString(R.string.toast_symbol_not_found)));
             throw new IllegalArgumentException(getString(R.string.toast_symbol_not_found));
-        }
-        else {
+        } else {
             // Get history from a month ago to today!
             Calendar nowTime = Utility.getNewYorkCalendarInstance();
             Calendar fromTime = Utility.getNewYorkCalendarInstance();
@@ -503,7 +503,7 @@ public class MainService extends IntentService {
      *
      * @param ops    the operations to be executed
      * @param method the custom method of your choice.
-     * @param arg provider-defined String argument
+     * @param arg    provider-defined String argument
      */
     private void applyOperations(ArrayList<ContentProviderOperation> ops, String method, String arg) {
         Bundle extras = new Bundle();

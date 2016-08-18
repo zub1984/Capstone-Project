@@ -1,9 +1,35 @@
 <resources>
-    <string name="ga_trackingId"></string>
+
+    <!-- End current session if app sleeps for a period of time -->
+    <integer name="ga_sessionTimeout">300</integer>
+
+    <!--  The property id associated with this analytics tracker -->
+    <string name="ga_trackingId">UA-81334346-2</string>
     <!--<string name="ga_logLevel">verbose</string>-->
 
     <!--  Problem with auto-tracking is that it tracks all activities and if it is popular,
-    it may reach its quota limit so set it to false-->
-    <bool name="ga_autoActivityTracking">false</bool>
+    it may reach its quota limit so set it to false is not required-->
+
+    <!-- Enable automatic Activity measurement -->
+    <bool name="ga_autoActivityTracking">true</bool>
+
     <bool name="ga_reportUncaughtExceptions">true</bool>
+
+    <string name="ga_sampleFrequency">100.0</string>
+
+    <!--
+     See Project Structure -> Analytics -> Google Analytics -> Learn More
+     to learn more about configuring this file.
+   -->
+
+    <screenName name="com.stock.change.MainActivity">Main Stock Lists</screenName>
+    <screenName name="com.stock.change.DetailActivity">Stock Details</screenName>
+    <screenName name="com.stock.change.BarChartActivity">Bar Charts</screenName>
+
+    <screenName name="com.stock.change.fragments.dialogs.AboutDialog">About</screenName>
+    <screenName name="com.stock.change.fragments.dialogs.MessageOfDayFragment">Message Of Day</screenName>
+    <screenName name="com.stock.change.fragments.dialogs.FaqDialog">FAQ</screenName>
+    <screenName name="com.stock.change.fragments.dialogs.SortDialog">Sort</screenName>
+
+
 </resources>

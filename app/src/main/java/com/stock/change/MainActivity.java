@@ -39,7 +39,6 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tagmanager.ContainerHolder;
 import com.google.android.gms.tagmanager.TagManager;
@@ -92,17 +91,29 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    @BindView(R.id.text_empty_list) TextView mEmptyMsg;
-    @BindView(R.id.coordinator_layout) CoordinatorLayout mCoordinatorLayout;
-    @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
-    @Nullable @BindView(R.id.detail_container) FrameLayout mDetailContainer;
-    @BindView(R.id.search_box_logo) TextView mSearchLogo;
-    @BindView(R.id.overflow) ImageView mOverflowMenuButton;
-    @BindView(R.id.progress_wheel) ProgressBar mProgressWheel;
-    @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
-    @BindView(R.id.edit_text_search) EditText mSearchEditText;
-    @BindView(R.id.swipe_to_refresh) SwipeRefreshLayout mSwipeToRefresh;
-    @BindView(R.id.search_box) SearchBox mToolbar;
+    @BindView(R.id.text_empty_list)
+    TextView mEmptyMsg;
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout mCoordinatorLayout;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @Nullable
+    @BindView(R.id.detail_container)
+    FrameLayout mDetailContainer;
+    @BindView(R.id.search_box_logo)
+    TextView mSearchLogo;
+    @BindView(R.id.overflow)
+    ImageView mOverflowMenuButton;
+    @BindView(R.id.progress_wheel)
+    ProgressBar mProgressWheel;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.edit_text_search)
+    EditText mSearchEditText;
+    @BindView(R.id.swipe_to_refresh)
+    SwipeRefreshLayout mSwipeToRefresh;
+    @BindView(R.id.search_box)
+    SearchBox mToolbar;
 
 
     private MyLinearLayoutManager mLayoutManager;
@@ -139,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
         initSavedInstanceState(savedInstanceState);
         setupDrawerMenuContent();
         //default it set first item as selected
-        mSelectedDrawerMenuId=savedInstanceState ==null ? R.id.navigation_home: savedInstanceState.getInt("SELECTED_ID");
+        mSelectedDrawerMenuId = savedInstanceState == null ? R.id.navigation_home : savedInstanceState.getInt("SELECTED_ID");
 
         initOverflowMenu();
         initRecyclerView();
@@ -606,7 +617,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
      */
     public void selectDrawerItem(MenuItem menuItem) {
         menuItem.setChecked(true);
-        mSelectedDrawerMenuId=menuItem.getItemId();
+        mSelectedDrawerMenuId = menuItem.getItemId();
         switch (mSelectedDrawerMenuId) {
             case R.id.navigation_msg_of_the_day:
                 new MessageOfDayFragment().show(getSupportFragmentManager(), MessageOfDayFragment.TAG);
@@ -624,11 +635,10 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
                 // Link to the app in the play store
                 final String appPackageName = getPackageName();
                 try {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=" + appPackageName)));
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                 } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    MyApplication.getInstance().trackException(e);
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                 }
                 break;
         }
@@ -876,7 +886,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
 
     private void showListUpToDateToast() {
         if (mListUpToDateToast == null) {
-            mListUpToDateToast = Toast.makeText(this,R.string.toast_list_is_up_to_date, Toast.LENGTH_SHORT);
+            mListUpToDateToast = Toast.makeText(this, R.string.toast_list_is_up_to_date, Toast.LENGTH_SHORT);
             mListUpToDateToast.show();
 
         } else if (!mListUpToDateToast.getView().isShown()) {
@@ -1020,11 +1030,17 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
      * @param symbol hit by user
      */
     private void sendSymbolAddHit(String symbol) {
-        MyApplication.getInstance().getAnalyticsTracker().send(new HitBuilders.EventBuilder()
+       /* MyApplication.getInstance().getAnalyticsTracker().send(new HitBuilders.EventBuilder()
                 .setCategory(getString(R.string.analytics_category))
                 .setAction(getString(R.string.analytics_action_add))
                 .setLabel(getString(R.string.analytics_label_add_placeholder, symbol))
-                .build());
+                .build());*/
+
+        MyApplication.getInstance().trackEvent(
+                getString(R.string.analytics_category),
+                getString(R.string.analytics_action_add),
+                getString(R.string.analytics_label_add_placeholder, symbol)
+        );
     }
 
     private void initTagManagerAndAnalytics() {
@@ -1033,17 +1049,14 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
             @Override
             protected Void doInBackground(Void... params) {
                 // Init Analytics
-                MyApplication.getInstance().initAnalyticsTracking();
-
+                //MyApplication.getInstance().initAnalyticsTracking();
                 // Init Tag Manager / GTM container
                 TagManager tagManager = MyApplication.getInstance().getTagManager();
 
                 // Retrieves a fresh SAVED container. I don't think it ever performs network operations..
-                tagManager.loadContainerPreferFresh(getString(R.string.tag_manager_motd_container_id),
-                        R.raw.gtm_default_container).setResultCallback(new ResultCallback<ContainerHolder>() {
+                tagManager.loadContainerPreferFresh(getString(R.string.tag_manager_motd_container_id), R.raw.gtm_default_container).setResultCallback(new ResultCallback<ContainerHolder>() {
                     @Override
                     public void onResult(@NonNull ContainerHolder containerHolder) {
-
                         // Refresh container over network manually in case the "fresh" container is stale.
                         containerHolder.refresh();
                         // Store the containerHolder for message of the day.

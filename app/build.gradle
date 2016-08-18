@@ -32,13 +32,13 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            debuggable true
+            /*debuggable true
+            shrinkResources true
             jniDebuggable false
             renderscriptDebuggable false
-            zipAlignEnabled true
+            zipAlignEnabled true*/
         }
     }
 
@@ -95,3 +95,5 @@ apt {
         eventBusIndex "com.stock.change.custom.MyEventBusIndex"
     }
 }
+
+apply plugin: 'com.google.gms.google-services'

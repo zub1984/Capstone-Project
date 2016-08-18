@@ -86,6 +86,8 @@ public class DetailService extends Service {
                     performActionLoadDetails(symbol);
 
                 } catch (IOException e) {
+                    // Tracking exception
+                    MyApplication.getInstance().trackException(e);
                     Log.e(TAG, Log.getStackTraceString(e));
 
                     if (e.getMessage().equals(getString(R.string.toast_no_network))) {

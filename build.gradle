@@ -8,6 +8,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.1.2'
         //http://greenrobot.org/eventbus/documentation/subscriber-index/
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        // google play services
+        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 
@@ -67,8 +69,9 @@ ext.deps = [
         eventbus_annotation_processor: 'org.greenrobot:eventbus-annotation-processor:3.0.1',
 
         // Google play services
-        play_services_ads: 'com.google.android.gms:play-services-ads:8.4.0',
-        play_services_analytics : 'com.google.android.gms:play-services-analytics:8.4.0',
+        play_google_services: 'com.google.gms:google-services:3.0.0',
+        play_services_ads: 'com.google.android.gms:play-services-ads:9.2.0',
+        play_services_analytics : 'com.google.android.gms:play-services-analytics:9.2.0',
 
         // Test dependencies
         junit: 'junit:junit:4.12',
@@ -76,7 +79,7 @@ ext.deps = [
 
 
 def getReleaseVersionCode() {
-    def version = project.releaseVersionCode + 1
+    def version = project.releaseVersionCode
     project.releaseVersionCode = version
     println sprintf("Returning version %d", version)
     return version
@@ -91,7 +94,7 @@ def getDevVersionCode() {
 
 
 def getLastVersionName(versionCode) {
-    return "0.0." + versionCode
+    return versionCode + ".0.0"
 }
 
 task printProps << {
