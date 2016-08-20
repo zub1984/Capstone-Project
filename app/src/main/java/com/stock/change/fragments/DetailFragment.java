@@ -67,13 +67,6 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @BindString(R.string.update_time_format) String mUpdateTimeFormat;
     @BindView(R.id.toolbar) Toolbar mToolBar;
 
-   /* @BindString(R.string.placeholder_days)
-    String mDays;
-    @BindString(R.string.placeholder_day)
-    String mDay;
-    @BindString(R.string.placeholder_dollar)
-    String mDollar;*/
-
     private Unbinder unbinder;
 
     private Uri mDetailUri;
@@ -246,7 +239,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onLoadDetailFinished(LoadDetailFinishedEvent event) {
-        /* Make sure we don't process the event of another stock symbol. This can happen is we
+        /* Make sure we don't process the event of another stock symbol. This can happen if we
         switch to a different DetailFragment while the prev one is still loading. */
         if (event.getSymbol().equals(getSymbol())) {
             mIsDetailRequestLoading = false;

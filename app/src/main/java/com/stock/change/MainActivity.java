@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.tagmanager.ContainerHolder;
@@ -140,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
     private InterstitialAd mInterstitialAd;
     private int mItemClicksForInterstitial;
 
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +157,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
 
         initOverflowMenu();
         initRecyclerView();
+        initBannerAd();
         initInterstitialAd();
         initTagManagerAndAnalytics();
 
@@ -231,6 +235,24 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
             mDynamicScrollLoadAnother = savedInstanceState.getBoolean(Constants.KEY_DYNAMIC_LOAD_ANOTHER);
             mItemClicksForInterstitial = savedInstanceState.getInt(Constants.KEY_ITEM_CLICKS_FOR_INTERSTITIAL);
         }
+    }
+
+
+    /**
+     * initialize the banner ad.
+     */
+    private void initBannerAd() {
+        mAdView = (AdView) findViewById(R.id.adView);
+
+        /*In production you need to make sure that you removed addTestDevice() methods in order to
+        render the live ads and start monetization.*/
+        /*AdRequest adRequest = new AdRequest.Builder()
+                // Check the LogCat to get your test device ID
+                .addTestDevice("ED54102968E3196BE131999F32345B82")
+                .build();
+        mAdView.loadAd(adRequest);*/
+
+        mAdView.loadAd(new AdRequest.Builder().build());
     }
 
     @Override
@@ -462,7 +484,6 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
     public void onStockItemClick(MainAdapter.MainViewHolder holder) {
         if (!mDragClickPreventionEnabled) {
             int position = holder.getAdapterPosition();
-
             if (position != RecyclerView.NO_POSITION) {
                 String symbol = getListManipulator().getItem(position).getSymbol();
 
@@ -481,14 +502,7 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
                 }
 
                 // Check if it is time to show interstitial ad
-                if (mItemClicksForInterstitial >= Constants.CLICKS_UNTIL_INTERSTITIAL) {
-                    if (mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show();
-                    } else {
-                        requestNewInterstitialAd();
-                    }
-                }
-                mItemClicksForInterstitial++;
+                checkItemClickAdCondition();
             }
         }
     }
@@ -970,11 +984,24 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
 
     @Override
     public void onPause() {
+
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+
         mDragDropManager.cancelDrag();
         if (mSnackBar != null && mSnackBar.isShown()) {
             mSnackBar.dismiss();
         }
         super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
     }
 
     @Override
@@ -991,6 +1018,11 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
 
     @Override
     public void onDestroy() {
+
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+
         if (mDragDropManager != null) {
             mDragDropManager.release();
             mDragDropManager = null;
@@ -1030,12 +1062,6 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
      * @param symbol hit by user
      */
     private void sendSymbolAddHit(String symbol) {
-       /* MyApplication.getInstance().getAnalyticsTracker().send(new HitBuilders.EventBuilder()
-                .setCategory(getString(R.string.analytics_category))
-                .setAction(getString(R.string.analytics_action_add))
-                .setLabel(getString(R.string.analytics_label_add_placeholder, symbol))
-                .build());*/
-
         MyApplication.getInstance().trackEvent(
                 getString(R.string.analytics_category),
                 getString(R.string.analytics_action_add),
@@ -1074,23 +1100,63 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
      */
     private void initInterstitialAd() {
         mInterstitialAd = new InterstitialAd(this);
+        // set the ad unit ID
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
 
+        // comment this method for production
+        /*AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("ED54102968E3196BE131999F32345B82")
+                .build();
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(adRequest);*/
+
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
+            public void onAdLoaded() {
+                Toast.makeText(getApplicationContext(), "Ad is loaded!", Toast.LENGTH_SHORT).show();
+                showInterstitial();
+            }
+
+            @Override
             public void onAdClosed() {
-                mItemClicksForInterstitial = 0;
-                requestNewInterstitialAd();
+                Toast.makeText(getApplicationContext(), "Ad is closed!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        requestNewInterstitialAd();
+    private void showInterstitial() {
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
     }
 
     /**
      * Requests a new interstitial ad to be loaded.
      */
     private void requestNewInterstitialAd() {
+        // comment this method for production
+        /*AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("ED54102968E3196BE131999F32345B82")
+                .build();
+        // Load ads into Interstitial Ads
+        mInterstitialAd.loadAd(adRequest);*/
+
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
+
+    /**
+     * check and display interstitial ad if divided  by Constants.CLICKS_UNTIL_INTERSTITIAL.
+     */
+    private void checkItemClickAdCondition() {
+        mItemClicksForInterstitial++;
+        if (mItemClicksForInterstitial % Constants.CLICKS_UNTIL_INTERSTITIAL == 0) {
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                requestNewInterstitialAd();
+            }
+        }
+    }
+
 }

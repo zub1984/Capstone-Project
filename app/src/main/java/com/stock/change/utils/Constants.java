@@ -17,7 +17,7 @@ public class Constants {
     public static final String KEY_DYNAMIC_LOAD_ANOTHER = "dynamicLoadAnother";
     public static final String KEY_ITEM_CLICKS_FOR_INTERSTITIAL = "ItemClicksForInterstitial";
 
-    public static final int CLICKS_UNTIL_INTERSTITIAL = 10;
+    public static final int CLICKS_UNTIL_INTERSTITIAL = 5;
     public static final int MOTD_CONTAINER_TIMEOUT = 3000;
     public static final int NAV_DRAWER_CLOSE_DELAY = 200;
 

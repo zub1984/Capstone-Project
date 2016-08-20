@@ -58,7 +58,7 @@ ext.deps = [
         butterknife: 'com.jakewharton:butterknife:8.2.1',
         butterknife_compiler : 'com.jakewharton:butterknife-compiler:8.2.1',
 
-        // Third Party
+        // Third Party https://github.com/sstrickx/yahoofinance-api/releases
         YahooFinanceAPI: 'com.yahoofinance-api:YahooFinanceAPI:2.0.0',
         MPAndroidChart: 'com.github.PhilJay:MPAndroidChart:v2.2.0',
 

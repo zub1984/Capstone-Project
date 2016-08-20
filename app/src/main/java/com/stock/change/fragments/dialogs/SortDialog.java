@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.widget.RadioGroup;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -79,6 +80,7 @@ public class SortDialog extends DialogFragment {
                                     order = ListManipulator.SORT_ASC;
                             }
 
+                            Log.i(TAG,"sorting selection :"+ (type | order));
                             ((ListManagerFragment) getActivity().getSupportFragmentManager()
                                     .findFragmentByTag(ListManagerFragment.TAG))
                                     .getListManipulator()

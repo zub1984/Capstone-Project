@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name" translatable="false">Stock Change</string>
-    <!--<string name="app_name_initials" translatable="false">&#160;SC&#160;</string>-->
     <string name="app_name_initials" translatable="false">Stock Change</string>
 
-    <!-- Admob -->
+    <!-- AdMob ad unit IDs -->
+    <string name="banner_ad_unit_id">ca-app-pub-8488633265578983/9391244951</string>
+
     <!-- Test Interstitial ID ca-app-pub-3940256099942544/1033173712-->
-    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-8488633265578983/6716980154</string>
 
     <!-- Analytics config in xml folder - analytics_tracker.xml -->
     <string name="analytics_category" translatable="false">Stock Event</string>
