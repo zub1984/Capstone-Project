@@ -15,7 +15,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:textColor="@color/secondary_text"
-        tools:text="Updated: Thursday, April 03 @ 4:00 PM"/>
+        tools:text="@string/text_update_time"/>
 
     <include layout="@layout/widget_list_item"/>
 

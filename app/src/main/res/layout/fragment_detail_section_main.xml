@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/text_update_time"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
@@ -31,7 +31,7 @@
             tools:text="@string/update_time_format" />
 
         <TextView android:id="@+id/text_full_name"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             android:textColor="@color/secondary_text"
             android:singleLine="true"
@@ -42,7 +42,7 @@
             tools:text="GoPro, Inc."/>
 
         <TextView android:id="@+id/text_symbol"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             android:textSize="@dimen/detail_symbol_text_size"
             android:textColor="@android:color/black"
@@ -52,14 +52,14 @@
 
         <TextView
             style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:text="@string/recent_close"
             app:layout_columnWeight="1" />
 
         <TextView
             style="@style/DetailColumnsCommon.TextSize.DetailRight"
             android:id="@+id/text_recent_close"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:textColor="@color/black"
             app:layout_gravity="fill_vertical"
             android:gravity="bottom"
@@ -68,7 +68,7 @@
 
         <TextView
             style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:text="@string/dollar_change"
             app:layout_columnWeight="1" />
 
@@ -82,13 +82,13 @@
 
         <TextView
             style="@style/DetailColumnsCommon.TextSize.LeftCommon.DetailMainLeft"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:text="@string/percent_change"
             app:layout_columnWeight="1" />
 
         <LinearLayout
             style="@style/DetailColumnsCommon.DetailLinearLayoutRight"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:orientation="horizontal"
             app:layout_columnWeight="1">
 

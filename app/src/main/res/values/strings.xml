@@ -88,6 +88,18 @@
     <!-- list_item load a few-->
     <string name="button_retry">RETRY</string>
 
+    <!-- list_item_first samples -->
+    <string name="text_update_time">Updated: Thursday, April 03\n@ 4:00 PM</string>
+    <string name="text_full_name">GoPro, Inc.</string>
+    <string name="text_symbol">GPRO</string>
+    <string name="text_change_dollar">$-1282.91</string>
+    <string name="text_recent_close">$1220.23</string>
+    <string name="text_change_percent">-1120.23%</string>
+    <string name="text_streak">33 Days</string>
+    <string name="text_change_amt">$-2222.00(-2223.44%)</string>
+
+
+
     <!-- Snackbar -->
     <string name="placeholder_snackbar_main_text">%1$s removed</string>
     <string name="snackbar_action_text">UNDO</string>

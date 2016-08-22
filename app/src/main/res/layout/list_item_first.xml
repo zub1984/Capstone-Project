@@ -12,66 +12,66 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="true"
-        android:padding="15dp"
+        android:padding="@dimen/list_item_padding"
         app:columnCount="2">
 
         <TextView
             android:id="@+id/text_update_time"
-            android:layout_width="0dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/zero_dp"
+            android:layout_marginBottom="@dimen/list_item_margin"
             android:gravity="center_horizontal"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
             android:textColor="@color/secondary_text"
-            tools:text="Updated: Thursday, April 03\n@ 4:00 PM" />
+            tools:text="@string/text_update_time" />
 
         <TextView
             android:id="@+id/text_full_name"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:ellipsize="end"
             android:gravity="center_horizontal"
             android:singleLine="true"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1"
             android:textColor="@color/secondary_text"
-            tools:text="GoPro, Inc." />
+            tools:text="@string/text_full_name" />
 
         <TextView
             android:id="@+id/text_symbol"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             android:textAppearance="@style/ListItemFirstTextLarge"
             app:layout_columnWeight="1"
-            tools:text="GPRO" />
+            tools:text="@string/text_symbol" />
 
         <TextView
             android:id="@+id/text_change_dollar"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             android:textAppearance="@style/ListItemFirstTextLarge"
             app:layout_columnWeight="1"
-            tools:text="$-1282.91"
+            tools:text="@string/text_change_dollar"
             tools:textColor="@color/stock_down_red" />
 
         <TextView
             android:id="@+id/text_recent_close"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             android:textAppearance="@style/ListItemFirstTextLarge"
             app:layout_columnWeight="1"
-            tools:text="$1220.23" />
+            tools:text="@string/text_recent_close" />
 
         <TextView
             android:id="@+id/text_change_percent"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             android:textAppearance="@style/ListItemFirstTextLarge"
             app:layout_columnWeight="1"
-            tools:text="-1120.23%"
+            tools:text="@string/text_change_percent"
             tools:textColor="@color/stock_down_red" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:gravity="center_horizontal"
             app:layout_columnSpan="2"
             app:layout_columnWeight="1">
@@ -80,9 +80,9 @@
                 android:id="@+id/text_streak"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="33 days"
+                android:text="@string/text_streak"
                 android:textAppearance="@style/ListItemFirstTextLarge"
-                tools:text="33 days" />
+                tools:text="@string/text_streak" />
 
             <ImageView
                 android:id="@+id/image_streak_arrow"

@@ -21,7 +21,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/empty_list_msg"
-        android:textSize="16sp"
+        android:textSize="@dimen/search_box_text_size"
         android:visibility="invisible"/>
 
     <ProgressBar

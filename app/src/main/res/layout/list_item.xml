@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/text_symbol"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/ListItemBlackText"
             app:layout_columnWeight="@dimen/list_item_symbol_column_weight"
@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/text_recent_close"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
             android:textAppearance="@style/ListItemBlackText"
             app:layout_columnWeight="1"
@@ -49,13 +49,13 @@
 
         <TextView
             android:id="@+id/text_full_name"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:paddingEnd="@dimen/text_view_full_name_padding_end"
-            android:paddingLeft="0dp"
+            android:paddingLeft="@dimen/zero_dp"
             android:paddingRight="@dimen/text_view_full_name_padding_end"
-            android:paddingStart="0dp"
+            android:paddingStart="@dimen/zero_dp"
             android:singleLine="true"
             android:textColor="@color/secondary_text"
             app:layout_columnWeight="@dimen/list_item_symbol_column_weight"
@@ -63,7 +63,7 @@
 
         <TextView
             android:id="@+id/text_change_amt"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero_dp"
             android:layout_height="wrap_content"
             app:layout_columnSpan="3"
             app:layout_columnWeight="@dimen/list_item_change_amt_column_weight"

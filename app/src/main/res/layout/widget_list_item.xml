@@ -25,7 +25,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout--
             android:id="@+id/text_symbol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="GPRO"/>
+            tools:text="@string/text_symbol"/>
 
         <TextView
             android:id="@+id/text_full_name"
@@ -38,7 +38,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout--
             android:paddingStart="0dp"
             android:paddingRight="@dimen/text_view_full_name_padding_end"
             android:paddingLeft="0dp"
-            tools:text="GoPro, Inc."/>
+            tools:text="@string/text_full_name"/>
     </LinearLayout>
 
     <LinearLayout
@@ -59,7 +59,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout--
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@id/text_streak"
                 android:layout_toStartOf="@id/text_streak"
-                tools:text="$6333.26"/>
+                tools:text="@string/text_recent_close"/>
 
             <TextView
                 android:textAppearance="@style/ListItemBlackText"
@@ -68,7 +68,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout--
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/image_streak_arrow"
                 android:layout_toStartOf="@id/image_streak_arrow"
-                tools:text="-33d"/>
+                tools:text="@string/text_streak"/>
 
             <ImageView
                 style="@style/StreakArrow"
@@ -87,7 +87,7 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout--
             android:id="@+id/text_change_amt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="$-2222.00(-2223.44%)"
+            tools:text="@string/text_change_amt"
             tools:textColor="@color/stock_down_red"/>
 
     </LinearLayout>

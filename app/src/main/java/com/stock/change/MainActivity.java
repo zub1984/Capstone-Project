@@ -246,13 +246,13 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
 
         /*In production you need to make sure that you removed addTestDevice() methods in order to
         render the live ads and start monetization.*/
-        /*AdRequest adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 // Check the LogCat to get your test device ID
                 .addTestDevice("ED54102968E3196BE131999F32345B82")
                 .build();
-        mAdView.loadAd(adRequest);*/
+        mAdView.loadAd(adRequest);
 
-        mAdView.loadAd(new AdRequest.Builder().build());
+        //mAdView.loadAd(new AdRequest.Builder().build());
     }
 
     @Override
@@ -1104,13 +1104,13 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
 
         // comment this method for production
-        /*AdRequest adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("ED54102968E3196BE131999F32345B82")
                 .build();
         // Load ads into Interstitial Ads
-        mInterstitialAd.loadAd(adRequest);*/
+        mInterstitialAd.loadAd(adRequest);
 
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+       // mInterstitialAd.loadAd(new AdRequest.Builder().build());
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
@@ -1136,13 +1136,13 @@ public class MainActivity extends AppCompatActivity implements SearchBox.SearchL
      */
     private void requestNewInterstitialAd() {
         // comment this method for production
-        /*AdRequest adRequest = new AdRequest.Builder()
+        AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice("ED54102968E3196BE131999F32345B82")
                 .build();
         // Load ads into Interstitial Ads
-        mInterstitialAd.loadAd(adRequest);*/
+        mInterstitialAd.loadAd(adRequest);
 
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        //mInterstitialAd.loadAd(new AdRequest.Builder().build());
     }
 
     /**

@@ -24,6 +24,16 @@
     <dimen name="overflow_menu_elevation">8dp</dimen>
     <dimen name="overflow_menu_compat_padding">8dp</dimen>
 
+    <!--serch box text size-->
+    <dimen name="search_box_text_size">16sp</dimen>
+    <dimen name="dialog_text_size">16sp</dimen>
+
+    <!-- navigation header -->
+    <dimen name="navigation_header_height">140dp</dimen>
+    <dimen name="navigation_header_padding">16dp</dimen>
+    <dimen name="navigation_header_textSize">32sp</dimen>
+
+
     <!--Detail fragment-->
     <dimen name="detail_symbol_text_size">24sp</dimen>
 
@@ -34,10 +44,14 @@
     <dimen name="detail_left_column_inner_padding">3dp</dimen>
     <dimen name="detail_common_column_outer_padding">0dp</dimen>
 
-        <!-- On devices < sw360dp scrollview generates this whitespace on bottom of screen for
-        some reason and we need to fill it out vertically-->
+    <!-- On devices < sw360dp scrollview generates this whitespace on bottom of screen for
+    some reason and we need to fill it out vertically-->
+
     <dimen name="detail_section_vertical_padding">24dp</dimen>
     <dimen name="detail_section_horizontal_padding">20dp</dimen>
+
+    <dimen name="space_zero_dp">0dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
     <!--End Detail fragment-->
 
     <!-- Bar chart-->
@@ -45,6 +59,8 @@
     <dimen name="bar_chart_description_horizontal_margin">5dp</dimen>
 
     <!--list_item_first-->
+    <dimen name="list_item_margin">8dp</dimen>
+    <dimen name="list_item_padding">15dp</dimen>
     <dimen name="list_item_first_padding">15dp</dimen>
     <dimen name="list_item_first_main_info_text_size">24sp</dimen>
 

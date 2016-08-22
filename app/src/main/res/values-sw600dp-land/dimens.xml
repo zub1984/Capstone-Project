@@ -6,4 +6,8 @@
 
     <!--list_item-->
     <dimen name="list_item_horizontal_padding">25dp</dimen>
+
+
+    <dimen name="overlap_view_height">132dp</dimen>
+    <dimen name="space_zero_dp">0dp</dimen>
 </resources>

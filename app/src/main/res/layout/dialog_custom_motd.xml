@@ -7,7 +7,7 @@
         android:id="@+id/text_motd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="@dimen/dialog_text_size" />
 
     <ProgressBar
         android:id="@+id/progress_wheel"

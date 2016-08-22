@@ -4,4 +4,7 @@
     <string name="content_description_menu">Menu</string>
     <string name="content_description_close_search">Close Search</string>
     <string name="content_description_nav">Navigation</string>
+    <string name="content_description_up">Arrow Up</string>
+    <string name="content_description_icon">Icon</string>
+
 </resources>
