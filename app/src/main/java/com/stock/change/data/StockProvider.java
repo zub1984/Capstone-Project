@@ -84,7 +84,7 @@ public class StockProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        mStockDbHelper = new StockDbHelper(getContext());
+        mStockDbHelper = StockDbHelper.getInstance(getContext());
         return true;
     }
 

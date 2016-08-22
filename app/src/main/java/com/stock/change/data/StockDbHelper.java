@@ -15,10 +15,27 @@ public class StockDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
     static final String DATABASE_NAME = "stocks.db";
+    private static StockDbHelper sInstance;
 
-    public StockDbHelper(Context context) {
+
+    public static synchronized StockDbHelper getInstance(Context context) {
+        // Use the application context, which will ensure that you
+        // don't accidentally leak an Activity's context.
+        // See this article for more information: http://bit.ly/6LRzfx
+        if (sInstance == null) {
+            sInstance = new StockDbHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    /**
+     * Constructor should be private to prevent direct instantiation.
+     * make call to static method "getInstance()" instead.
+     */
+    private StockDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {

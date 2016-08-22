@@ -57,15 +57,24 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     /**
      * define the butter knife binding variables
      */
-    @BindView(R.id.detail_main_info) GridLayout mMainInfo;
-    @BindView(R.id.detail_extras_info) GridLayout mExtrasInfo;
-    @BindView(R.id.progress_wheel) ProgressBar mProgressWheel;
-    @BindView(R.id.text_update_time) TextView mTextUpdateTime;
-    @BindView(R.id.text_streak_prev) TextView mTextPrevStreak;
-    @BindView(R.id.button_retry) Button mRetryButton;
-    @BindView(R.id.button_bar_chart) ImageView mBarChart;
-    @BindString(R.string.update_time_format) String mUpdateTimeFormat;
-    @BindView(R.id.toolbar) Toolbar mToolBar;
+    @BindView(R.id.detail_main_info)
+    GridLayout mMainInfo;
+    @BindView(R.id.detail_extras_info)
+    GridLayout mExtrasInfo;
+    @BindView(R.id.progress_wheel)
+    ProgressBar mProgressWheel;
+    @BindView(R.id.text_update_time)
+    TextView mTextUpdateTime;
+    @BindView(R.id.text_streak_prev)
+    TextView mTextPrevStreak;
+    @BindView(R.id.button_retry)
+    Button mRetryButton;
+    @BindView(R.id.button_bar_chart)
+    ImageView mBarChart;
+    @BindString(R.string.update_time_format)
+    String mUpdateTimeFormat;
+    @BindView(R.id.toolbar)
+    Toolbar mToolBar;
 
     private Unbinder unbinder;
 
@@ -77,7 +86,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG,"onCreate");
+        Log.i(TAG, "onCreate");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Need to postpone transition until data is loaded because if data is loading while
             // transition is happening setting visibility of some items to VISIBLE will make the
@@ -89,16 +98,16 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i(TAG,"onCreateView");
+        Log.i(TAG, "onCreateView");
         View view = inflater.inflate(R.layout.fragment_detail_ref, container, false);
         unbinder = ButterKnife.bind(this, view);
-        Log.i(TAG,"ButterKnife.bind");
+        Log.i(TAG, "ButterKnife.bind");
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG,"onViewCreated");
+        Log.i(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
 
         Bundle args = getArguments();
@@ -178,7 +187,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         showProgressWheel();
 
         Intent serviceIntent = new Intent(getActivity(), DetailService.class);
-        serviceIntent.putExtra(Constants .KEY_DETAIL_SYMBOL,
+        serviceIntent.putExtra(Constants.KEY_DETAIL_SYMBOL,
                 StockContract.getSymbolFromUri(mDetailUri));
 
         getActivity().startService(serviceIntent);
@@ -187,7 +196,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getActivity(),
-                mDetailUri,
+                mDetailUri, // this is content URI to load the stock details
                 Constants.DETAIL_PROJECTION,
                 null,
                 null,
@@ -202,34 +211,39 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     // I destroy the Loader when I finished getting the extras section, so it doesn't happen.
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        if (data != null && data.moveToFirst()) {
-            int prevStreak = data.getInt(Constants.INDEX_PREV_STREAK);
+        // A switch-case is useful when dealing with multiple Loaders/IDs
+        switch (loader.getId()) {
+            case Constants.ID_LOADER_DETAILS:
+                if (data != null && data.moveToFirst()) {
+                    int prevStreak = data.getInt(Constants.INDEX_PREV_STREAK);
 
-            // Set update time
-            Date lastUpdate = Utility.getLastUpdateTime(getActivity().getContentResolver()).getTime();
-            SimpleDateFormat sdf = new SimpleDateFormat(mUpdateTimeFormat, Locale.US);
-            String lastUpdateString = getString(R.string.placeholder_update_time, sdf.format(lastUpdate));
+                    // Set update time
+                    Date lastUpdate = Utility.getLastUpdateTime(getActivity().getContentResolver()).getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat(mUpdateTimeFormat, Locale.US);
+                    String lastUpdateString = getString(R.string.placeholder_update_time, sdf.format(lastUpdate));
 
-            // Main Section
-            // Add check here so when the service returns from calculating the prev streak info
-            // it wont have to load main section again.
-            if (!mTextUpdateTime.getText().toString().equals(lastUpdateString)) {
-                initMainSection(data, lastUpdateString);
+                    // Main Section
+                    // Add check here so when the service returns from calculating the prev streak info
+                    // it wont have to load main section again.
+                    if (!mTextUpdateTime.getText().toString().equals(lastUpdateString)) {
+                        initMainSection(data, lastUpdateString);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getActivity().startPostponedEnterTransition();
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            getActivity().startPostponedEnterTransition();
+                        }
+                    }
+                    // Extras Section
+                    if (prevStreak != 0) {
+                        initExtrasSection(data, prevStreak);
+
+                    } else if (mReplyButtonVisible) {
+                        showRetryButton();
+
+                    } else if (!mIsDetailRequestLoading) {
+                        startDetailService();
+                    }
                 }
-            }
-            // Extras Section
-            if (prevStreak != 0) {
-                initExtrasSection(data, prevStreak);
-
-            } else if (mReplyButtonVisible) {
-                showRetryButton();
-
-            } else if (!mIsDetailRequestLoading) {
-                startDetailService();
-            }
+                // Now displays the queried data.
         }
     }
 
@@ -253,7 +267,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     private void initMainSection(Cursor data, String lastUpdateString) {
-        Log.d(TAG,"initMainSection");
+        Log.d(TAG, "initMainSection");
        /* ButterKnife is awesome API */
         TextView tSymbol = ButterKnife.findById(mMainInfo, R.id.text_symbol);
         TextView tFullName = ButterKnife.findById(mMainInfo, R.id.text_full_name);
@@ -303,12 +317,12 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     private void initExtrasSection(Cursor data, int prevStreak) {
-        Log.d(TAG,"initExtrasSection");
-        TextView tPrevStreakEndPrice= ButterKnife.findById(mExtrasInfo, R.id.text_prev_streak_end_price);
-        TextView tStreakYearHigh= ButterKnife.findById(mExtrasInfo, R.id.text_streak_year_high);
-        TextView mStreakYearLow= ButterKnife.findById(mExtrasInfo, R.id.text_streak_year_low);
-        ImageView iPrevStreakArrow= ButterKnife.findById(mExtrasInfo, R.id.image_prev_streak_arrow);
-        TextView tPrevStreakNegSign= ButterKnife.findById(mExtrasInfo, R.id.text_streak_year_low);
+        Log.d(TAG, "initExtrasSection");
+        TextView tPrevStreakEndPrice = ButterKnife.findById(mExtrasInfo, R.id.text_prev_streak_end_price);
+        TextView tStreakYearHigh = ButterKnife.findById(mExtrasInfo, R.id.text_streak_year_high);
+        TextView mStreakYearLow = ButterKnife.findById(mExtrasInfo, R.id.text_streak_year_low);
+        ImageView iPrevStreakArrow = ButterKnife.findById(mExtrasInfo, R.id.image_prev_streak_arrow);
+        TextView tPrevStreakNegSign = ButterKnife.findById(mExtrasInfo, R.id.text_streak_year_low);
 
         int streakYearHigh = data.getInt(Constants.INDEX_STREAK_YEAR_HIGH);
         int streakYearLow = data.getInt(Constants.INDEX_STREAK_YEAR_LOW);

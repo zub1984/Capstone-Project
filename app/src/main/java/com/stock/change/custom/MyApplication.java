@@ -115,27 +115,6 @@ public class MyApplication extends Application {
         return mSessionId.equals(sessionId);
     }
 
-   /* *//**
-     * Initializes the Analytics Tracker
-     *//*
-    public synchronized void initAnalyticsTracking() {
-        if (mTracker == null) {
-            // get google analytics instance
-            GoogleAnalytics ga = GoogleAnalytics.getInstance(this);
-            // To enable debug logging use:
-            // adb shell setprop log.tag.GAv4 DEBUG
-            // adb logcat -s GAv4
-            // create a new tracker
-            mTracker = ga.newTracker(R.xml.analytics_tracker);
-            //enable automatic reports
-            ga.enableAutoActivityReports(this);
-
-        }
-    }
-*/
-   /* public Tracker getAnalyticsTracker() {
-        return mTracker;
-    }*/
 
     public synchronized TagManager getTagManager() {
         if (mTagManager == null) {
